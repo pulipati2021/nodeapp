@@ -19,7 +19,7 @@ jobs:
       run: |
          npm install
          chmod +x $(which babel)
-         npm install -g babel
+         
     - name: Build
       run: npm run build
     - name: Test
