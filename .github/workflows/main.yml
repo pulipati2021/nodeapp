@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
          npm install
-         chmod +x $(which babel)
+       #chmod +x $(which babel)
          
     - name: Build
       run: npm run build
