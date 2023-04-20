@@ -1,26 +1,27 @@
-name: Node.js CI
+name: Test Act 
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-
+  act-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-    - name: Install dependencies
-      run: |
-         npm install
-       #chmod +x $(which babel)
-         
-    - name: Build
-      run: npm run build
-    - name: Test
-      run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: |
+          npm install
+       
+
+     
+        run: |
+          echo "Hello Infomagnus" 
+          echo "Welcome to first workflow"
+          echo " ---------------------"
+          # Commands to run build deploy
