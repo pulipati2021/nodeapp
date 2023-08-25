@@ -27,25 +27,14 @@ on:
         required: false 
         default: false 
         description: "autoDeployProduction"       
-      deploymentDrainTime:
-        required: false 
-        description: "deploymentDrainTime"
       publishArtifactS: 
         required: false 
         default: false 
         description : "publishArtifacts"
-      motApplicationName:
-        required : false 
-        description :  "motApplicationName"
-      slackWorkspace : 
-        required : false 
-        description :  "slackWorkspace"        
-      slackChannelName : 
-        required : false 
-        description :  "slackChannelName"       
-      deploymentPlatform:
-        required : false 
-        description :  "deploymentPlatform"       
+ 
+  
+ 
+       
 env:
   JOB_NAME : ${{ job.name }}
   NODE_TYPE : ${{ inputs.nodeType || 'dind-nocache' }}
