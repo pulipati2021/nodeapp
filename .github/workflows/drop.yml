@@ -23,5 +23,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Check Performance Test Environments
         run: |
-          echo "${{ env.NODE_TYPE }}"
+          echo "${{ env.NODE_TYPE }}" 
           
