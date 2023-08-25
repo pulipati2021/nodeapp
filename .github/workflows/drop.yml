@@ -6,10 +6,25 @@ on:
       node_type:
         required: false
         description: Node type
-
+      buildable_branch_regex:
+        required: false 
+        description: "buildableBranchRegex"
+      deployable_branch_regex :
+        required: false
+        description : "deployableBranchRegex"
+      is_deployable_branch: 
+        required: false
+        description : "isDeployableBranch"
+        
+  
 env:
   NODE_TYPE : ${{ inputs.node_type || 'dind-nocache' }}
-
+  BUIDABLE_BRANCH_REGEX:  ${{ inputs.buildable_branch_regex || '.*' }}
+  DEPLOYABLE_BRANCH_REGEX:  ${{ inputs.deployable_branch_regex || 'master' }}
+  IS_DEPLOYABLE_BRANCH :   ${{ inputs.is_deployable_branch || 'master' }}
+  IS_DEPLOYABLE : false
+  MAVEN_ARGS :  '' 
+  DEPLOY_TEST :  ${{ inputs.deploy_test || 'dind-nocache' }}
 jobs:
   dropwizard:
     runs-on: ${{ matrix.os }}
