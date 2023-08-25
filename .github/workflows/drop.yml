@@ -3,12 +3,12 @@ name: DropWizard EndPoint Action workflow
 on:
   workflow_dispatch:
     inputs:
-      NODE_TYPE:
+      node_type:
         required: false
         description: Node type
 
 env:
-  NODE_TYPE :  "${{ inputs.NODE_TYPE }} === '' ? 'dind-nocache' : ${{ inputs.NODE_TYPE }}"
+  NODE_TYPE : ${{ inputs.node_type || 'dind-nocache' }}
 
 jobs:
   dropwizard:
