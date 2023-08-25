@@ -1,0 +1,11 @@
+name: DropWizard EndPoint Action workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      NODE_TYPE:
+        required: false
+        description: Node type
+
+env:
+  NODE_TYPE :  "${{ input.NODE_TYPE }}!= '' ? 'dind-nocache' : ${{ env.NODE_TYPE }}"
