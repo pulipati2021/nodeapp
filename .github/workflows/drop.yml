@@ -8,7 +8,7 @@ on:
         description: Node type
 
 env:
-  NODE_TYPE :  "${{ inputs.NODE_TYPE }}== '' ? 'dind-nocache' : ${{ inputs.NODE_TYPE }}"
+  NODE_TYPE :  "${{ inputs.NODE_TYPE }} === '' ? 'dind-nocache' : ${{ inputs.NODE_TYPE }}"
 
 jobs:
   dropwizard:
