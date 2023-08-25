@@ -50,7 +50,7 @@ env:
   PUBLISH_ARTIFACTS :  ${{ inputs.publishArtifacts ||  'false' }}
   VALIDATE_ONLY : false 
   OVERRIDE_VERSION : '' 
-  MOT_APPLICAITON_NAME :  ${{ env.motApplicationName ||   '${{ job.name }}' }}
+  MOT_APPLICAITON_NAME :  ${{ env.motApplicationName ||   env.JOB_NAME }}
   SLACK_WORKSPACE :  ${{ env.slackWorkspace ||   'eg' }}
   SLACK_NOTIFICATION_CHANNEL :  '' #additional 
   SLACK_CHANNEL_NAME :  ${{ env.slackChannelName ||   env.SLACK_NOTIFICATION_CHANNEL }}
