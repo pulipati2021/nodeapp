@@ -3,28 +3,70 @@ name: DropWizard EndPoint Action workflow
 on:
   workflow_dispatch:
     inputs:
-      node_type:
-        required: false
+      nodeType:
+        required: false 
         description: Node type
-      buildable_branch_regex:
+      buildableBranchRegex:
         required: false 
         description: "buildableBranchRegex"
-      deployable_branch_regex :
-        required: false
+      deployableBranchRegex :
+        required: false 
         description : "deployableBranchRegex"
-      is_deployable_branch: 
-        required: false
+      isDeployableBranch: 
+        required: false 
         description : "isDeployableBranch"
-        
-  
+      autoDeployTest: 
+        required: false  
+        default: false 
+        description: "autoDeployTest"
+      autoDeployStage: 
+        required: false 
+        default: false 
+        description: "autoDeployProduction"
+      autoDeployProduction: 
+        required: false 
+        default: false 
+        description: "autoDeployProduction"       
+      deploymentDrainTime:
+        required: false 
+        description: "deploymentDrainTime"
+      publishArtifactS: 
+        required: false 
+        default: false 
+        description : "publishArtifacts"
+      motApplicationName:
+        required : false 
+        description :  "motApplicationName"
+      slackWorkspace : 
+        required : false 
+        description :  "slackWorkspace"        
+      slackChannelName : 
+        required : false 
+        description :  "slackChannelName"       
+      deploymentPlatform:
+        required : false 
+        description :  "deploymentPlatform"       
 env:
-  NODE_TYPE : ${{ inputs.node_type || 'dind-nocache' }}
-  BUIDABLE_BRANCH_REGEX:  ${{ inputs.buildable_branch_regex || '.*' }}
-  DEPLOYABLE_BRANCH_REGEX:  ${{ inputs.deployable_branch_regex || 'master' }}
-  IS_DEPLOYABLE_BRANCH :   ${{ inputs.is_deployable_branch || 'master' }}
-  IS_DEPLOYABLE : false
+  JOB_NAME : ${{ job.name }}
+  NODE_TYPE : ${{ inputs.nodeType || 'dind-nocache' }}
+  BUIDABLE_BRANCH_REGEX:  ${{ inputs.buildableBranchRegex || '.*' }}
+  DEPLOYABLE_BRANCH_REGEX:  ${{ inputs.deployableBranchRegex || 'master' }}
+  IS_DEPLOYABLE_BRANCH :   ${{ inputs.isDeployableBranch || 'master' }} #${GITHUB_REF#refs/heads/}
+  IS_DEPLOYABLE : false 
   MAVEN_ARGS :  '' 
-  DEPLOY_TEST :  ${{ inputs.deploy_test || 'dind-nocache' }}
+  DEPLOY_TEST :  ${{ inputs.autoDeployTest || 'false' }}
+  DEPLOY_STAGE : ${{ inputs.autoDeployStage || 'false' }}
+  DEPLOY_PROD : ${{ inputs.autoDeployProduction || 'false' }}
+  DEPLOYMENT_DRAIN_TIME :  ${{ inputs.deploymentDrainTime || '0' }}
+  PUBLISH_ARTIFACTS :  ${{ inputs.publishArtifacts ||  'false' }}
+  VALIDATE_ONLY : false 
+  OVERRIDE_VERSION : '' 
+  MOT_APPLICAITON_NAME :  ${{ inputs.motApplicationName ||   '${{ job.name }}' }}
+  SLACK_WORKSPACE :  ${{ inputs.slackWorkspace ||   'eg' }}
+  SLACK_NOTIFICATION_CHANNEL :  '' #additional 
+  SLACK_CHANNEL_NAME :  ${{ inputs.slackChannelName ||   env.SLACK_NOTIFICATION_CHANNEL }}
+  DEPLOYMENT_PLATFORM :  ${{ inputs.deploymentPlatform ||   'multipaas-vrbo' }}
+ 
 jobs:
   dropwizard:
     runs-on: ${{ matrix.os }}
