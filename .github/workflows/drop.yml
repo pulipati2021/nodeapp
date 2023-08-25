@@ -36,7 +36,7 @@ on:
         description : "an array of values like item1,item2,item3"
        
 env:
-  JOB_NAME : ${{ job.name }}
+  JOB_NAME : '' #${{ job.name }}
   NODE_TYPE : ${{ inputs.nodeType || 'dind-nocache' }}
   BUIDABLE_BRANCH_REGEX:  ${{ inputs.buildableBranchRegex || '.*' }}
   DEPLOYABLE_BRANCH_REGEX:  ${{ inputs.deployableBranchRegex || 'master' }}
