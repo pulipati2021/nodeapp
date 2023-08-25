@@ -31,9 +31,9 @@ on:
         required: false 
         default: false 
         description : "publishArtifacts"
- 
-  
- 
+      performanceTestEnvs:
+        required: false 
+        description : "an array of values like item1,item2,item3"
        
 env:
   JOB_NAME : ${{ job.name }}
@@ -50,12 +50,11 @@ env:
   PUBLISH_ARTIFACTS :  ${{ inputs.publishArtifacts ||  'false' }}
   VALIDATE_ONLY : false 
   OVERRIDE_VERSION : '' 
-  MOT_APPLICAITON_NAME :  ${{ inputs.motApplicationName ||   '${{ job.name }}' }}
-  SLACK_WORKSPACE :  ${{ inputs.slackWorkspace ||   'eg' }}
+  MOT_APPLICAITON_NAME :  ${{ env.motApplicationName ||   '${{ job.name }}' }}
+  SLACK_WORKSPACE :  ${{ env.slackWorkspace ||   'eg' }}
   SLACK_NOTIFICATION_CHANNEL :  '' #additional 
-  SLACK_CHANNEL_NAME :  ${{ inputs.slackChannelName ||   env.SLACK_NOTIFICATION_CHANNEL }}
-  DEPLOYMENT_PLATFORM :  ${{ inputs.deploymentPlatform ||   'multipaas-vrbo' }}
- 
+  SLACK_CHANNEL_NAME :  ${{ env.slackChannelName ||   env.SLACK_NOTIFICATION_CHANNEL }}
+  DEPLOYMENT_PLATFORM :  ${{ env.deploymentPlatform ||   'multipaas-vrbo' }}
 jobs:
   dropwizard:
     runs-on: ${{ matrix.os }}
