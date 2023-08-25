@@ -8,4 +8,16 @@ on:
         description: Node type
 
 env:
-  NODE_TYPE :  "${{ input.NODE_TYPE }}!= '' ? 'dind-nocache' : ${{ env.NODE_TYPE }}"
+  NODE_TYPE :  "${{ input.NODE_TYPE }}== '' ? 'dind-nocache' : ${{ env.NODE_TYPE }}"
+
+jobs:
+  dropwizard:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
